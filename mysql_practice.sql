@@ -117,3 +117,13 @@ SELECT employees.name, employees.department, department_info.building_name
 FROM employees
 INNER JOIN department_info
 ON employees.department = department_info.department_name;
+
+SELECT employees.name, employees.department, department_info.building_name
+FROM employees
+LEFT JOIN department_info
+ON employees.department = department_info.department_name;
+
+SELECT employees.name, employees.department, department_info.building_name
+FROM employees
+RIGHT JOIN department_info
+ON employees.department = department_info.department_name;
