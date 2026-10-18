@@ -29,8 +29,8 @@ SELECT * FROM employees;
 ALTER TABLE employees ADD COLUMN salary DECIMAL(10, 2);
 
 UPDATE employees 
-SET salary = 45000.00 
-WHERE department = 'HR';
+SET salary = 30000.00 
+WHERE department = 'Sales';
 /*
 WHERE vs HAVING: The WHERE clause filters individual rows before any grouping or aggregation happens.
 COUNT(*) is an aggregate function that only exists after rows are grouped together, the database throws an error.
@@ -82,3 +82,38 @@ Your final output on the screen will only show IT and Sales because they are the
 
 SELECT COUNT(*) FROM employees; --looks at that table and gives a single number—the total count of how many rows are in that table
 -- We use WHERE when we want to filter individual rows before we do anything else with them
+
+-- ================================================================================================== --
+-- --Sorts all the employees based on their salary, starting with the highest salary at the very top and going down to the lowest --
+SELECT * FROM employees
+ORDER BY salary DESC
+LIMIT 3;
+
+SELECT * FROM employees 
+ORDER BY salary DESC;
+
+-- ==================================================================================================== --
+
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department;
+
+-- ==================================================================================================== --
+-- Create a new table
+
+CREATE TABLE department_info (
+    department_name VARCHAR(50),
+    building_name VARCHAR(50)
+);
+
+INSERT INTO department_info (department_name, building_name) VALUES
+('IT', 'Building A'),
+('HR', 'Building B'),
+('Sales', 'Building C');
+
+SELECT * FROM department_info
+
+SELECT employees.name, employees.department, department_info.building_name
+FROM employees
+INNER JOIN department_info
+ON employees.department = department_info.department_name;
