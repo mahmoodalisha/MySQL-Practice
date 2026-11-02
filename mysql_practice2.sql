@@ -49,25 +49,57 @@ CREATE TABLE orders (
     FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
--- Step 3: Insert sample data into customers
+-- Step 3: Insert data into customers
 INSERT INTO customers (id, name) VALUES 
 (1, 'Alice Smith'),
 (2, 'Bob Jones'),
-(3, 'Charlie Brown');
+(3, 'Charlie Brown'),
+(4, 'Diana Prince'),
+(5, 'Ethan Hunt'),
+(6, 'Fiona Glenanne');
 
--- Step 4: Insert sample data into orders (making sure Alice has more than 5 orders after 2024-01-01)
+-- Step 4: Insert orders with different counts after 2024-01-01
 INSERT INTO orders (id, customer_id, order_date) VALUES 
 (101, 1, '2024-02-01'),
-(102, 1, '2024-03-15'),
+(102, 1, '2024-03-15'), 
 (103, 1, '2024-04-10'),
-(104, 1, '2024-05-20'),
-(105, 1, '2024-06-01'),
-(106, 1, '2024-07-04'), -- Alice's 6th order after Jan 1, 2024
-(107, 2, '2024-02-10'),
-(108, 2, '2024-03-01'), -- Bob only has 2 orders
-(109, 3, '2023-12-15'); -- Charlie's order is before 2024 (should be filtered out)
+(104, 1, '2024-05-20'), 
+(105, 1, '2024-06-01'), 
+(106, 1, '2024-07-04'),
+(107, 2, '2024-02-10'), 
+(108, 2, '2024-03-01'), 
+(109, 2, '2024-03-25'),
+(110, 2, '2024-04-12'), 
+(111, 2, '2024-05-05'), 
+(112, 2, '2024-06-18'),
+(113, 2, '2024-07-22'),
+(114, 3, '2024-01-10'), 
+(115, 3, '2024-02-15'), 
+(116, 3, '2024-03-20'),
+(117, 3, '2024-04-05'), 
+(118, 3, '2024-05-11'), 
+(119, 3, '2024-06-19'),
+(120, 3, '2024-07-30'),
+(121, 3, '2024-08-14'),
+(122, 4, '2024-01-05'),
+(123, 4, '2024-02-02'),
+(124, 4, '2024-03-03'),
+(125, 4, '2024-04-04'),
+(126, 4, '2024-05-05'),
+(127, 4, '2024-06-06'),
+(128, 4, '2024-07-07'),
+(129, 4, '2024-08-08'),
+(130, 4, '2024-09-09'),
+(131, 5, '2024-02-20'),
+(132, 5, '2024-03-21'),
+(133, 5, '2024-04-22'),
+(134, 5, '2024-05-23'),
+(135, 5, '2024-06-24'),
+(136, 5, '2024-07-25'),
+(137, 6, '2024-01-15'), 
+(138, 6, '2024-02-18');
 
--- Step 5: Run your query!
+-- Step 5: Run the query
 SELECT 
     cust.id,
     cust.name,
