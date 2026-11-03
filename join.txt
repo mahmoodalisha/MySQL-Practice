@@ -1,0 +1,12 @@
+An INNER JOIN filters out any users who haven't placed any completed orders—they vanish from the report entirely because they don't have a matching row in the orders table.
+
+LEFT JOIN (The "Keep Everything on the Left" Rule)
+A LEFT JOIN keeps all rows from the left table (the one written before the JOIN keyword), whether they have a match in the right table or not.
+
+RIGHT JOIN
+A RIGHT JOIN does the exact opposite of a LEFT JOIN. It keeps all rows from the right table (the one written after the JOIN keyword), and pulls in matching data from the left table. If a row on the right doesn't match the left, the left side's columns get filled with NULL.
+
+
+INNER JOIN Only matching rows on both sides,The row is deleted from the results.
+LEFT JOIN All rows from the left table + matches on the right,"Keeps the left row, puts NULL for the missing right data."
+RIGHT JOIN All rows from the right table + matches on the left,"Keeps the right row, puts NULL for the missing left data."

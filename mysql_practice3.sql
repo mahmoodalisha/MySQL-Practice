@@ -28,12 +28,22 @@ ORDER BY order_count DESC;
 -- ==================================================
 
 --fixed query
+/* if the goal is a complete user list (ranking everyone, including zeroes)
+To fix this, we need to change it to a LEFT JOIN so all users are preserved.
+However if we put WHERE status = 'completed', it turns our LEFT JOIN right back into an INNER JOIN because it filters out the NULL rows.
+So the correct approach is to move the status check inside a conditional aggregate—like a COUNT(CASE WHEN o.status = 'completed' THEN o.id END)
+and make sure our GROUP BY includes both u.id and u.name for strict SQL compliance.
+ */
+
+/*If you want to include ALL users (even those with 0 completed orders)
+To make sure users with zero completed orders still show up with a count of 0 instead of disappearing entirely, use a LEFT JOIN and move the filter condition into the ON clause (or count conditionally) */
+
+SQL
 SELECT 
     u.id, 
     u.name, 
-    COUNT(o.id) AS order_count
+    COUNT(CASE WHEN o.status = 'completed' THEN o.id END) AS order_count
 FROM users u
-JOIN orders o ON u.id = o.user_id
-WHERE o.status = 'completed'
+LEFT JOIN orders o ON u.id = o.user_id
 GROUP BY u.id, u.name
 ORDER BY order_count DESC;
